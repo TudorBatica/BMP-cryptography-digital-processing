@@ -15,7 +15,7 @@ In order to encrypt the given BMP the following algorithm is used:
 A sequence of random numbers R = (R1, R2, ..., R2 * width * height - 1) is generated using the XORSHIFT32 generator initialized with the R0 value which can be found in the secret_key.txt file.   
 A random permutation is also generated using Durstenfeld's algorithm. The bitmap's pixels are then permuted using the permuation.
 Finally, we obtain the ciphered image by substituting the pixels using the following substitution relation:  
-!image here!  
+![](images/documentation/enc_sub.png) 
 where SV (starting value) can be found in the secret_key.txt file.  
 In order to decrypt the encrypted the BMP we basically mirror the encryption algorithm:  
 A sequence of random numbers is generated using the XORSHIFT32 generator.  
