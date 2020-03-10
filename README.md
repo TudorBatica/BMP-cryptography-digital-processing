@@ -23,6 +23,15 @@ A random permutation is also generated using Durstenfeld's algorithm and we comp
 The pixels are substituted using the inverse substitution relation:  
 Finally, the original image is obtained by permuting the pixels.  
 
-
+## How does the digital image processing part work?
+The purpose of this part is to detect digits on a BMP that contains multiple digits.  
+To achieve this without using machine learning algorithms, we can use a template matching algorithm.  
+First, we need 10 templates, each one with a different digit.  
+Then, the image containing the digits and templates are converted into grayscale images.  
+For each template, we glide it over the image, centering the template in each point of the image. For each (x, y) position on the image, the algorithm computes a cross-correlation score between the current template and that part of the image.  
+!image here!  
+We will consider 'detections' those parts of the image that have a cross-correlation higher than a given threshold (in this case 0.5). To visualize the detections easily, they will be colored, using a different color for each digit. All the detections are stored in an array that is then sorted descending by the cross-correlation score. The sorted array is processed from the left (detections with high score) to the right (detections with low score) like this: all detections dj which overlay spatially with the current detection di, with i < j and,
+therefore, score(di) > score(dj) are removed.  
+!image here!  
 
 
